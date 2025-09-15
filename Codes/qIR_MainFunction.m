@@ -4,7 +4,7 @@ function[c,age,x,DeathInsecticide,Theta0,Theta1,AA0,AA1,E0,E1,AA0T,AA1T,...
     mu1,rrm,rr0,rr1,dd0,dd1,AvrMosquiLifeSpan,MinMosquiAgeLayEggs,cVal,k, ...
     EmergenceThreshold)
         
-%% This Function computes fitness functions and Survival probabilities
+    %% This Function gives the total number of all subpop of mosquitoes, the relative gain and the time of emergence of IR
     %
     % Inputs:
     %   C_est_cte - boolean value 1 if exposure rate is constant over deploymenbt period, 0 if not
