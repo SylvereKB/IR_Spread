@@ -185,13 +185,15 @@ if (0)
     'ContentType', 'image', 'BackgroundColor','white');
 end 
 
-%% SECTION 4: Fitness functions, survival probabilities, death and egg-laying rates=fct(C_est_cte,cm,cVal,robaSurviFullySensi)
+%% SECTION 4: Fitness functions, survival probabilities, death and egg-laying rates=fct(C_est_cte,cm,cVal,ProbaSurviFullySensi)
 if (0)
     %setting parameters values
     C_est_cte=1;
     cm=0.5;
     cVal= zeros(1,Ny);
-    ProbaSurviFullySensi=10^-10; 
+    ProbaSurviFullySensi=10^-10;
+    dd0= -log(ProbaSurviFullySensi);   
+    dd1= -log(1-ProbaSurviFullySensi);  
 
     %insecticide exposure rate
     id0=1+floor(t_begin_c/dt);    
@@ -304,12 +306,14 @@ if (0)
 end
 
 %% SECTION 5: Typical dynamics with a constant exposure rate C=fct(C_est_cte,cm,cval,ProbaSurviFullySensi)  
-if (0)
+if (1)
     %setting parameters values
     C_est_cte=1;
-    cm=0.2;
+    cm=0.6;
     cVal= zeros(1,Ny);
-    ProbaSurviFullySensi=10^-10;
+    ProbaSurviFullySensi= 10^-1;        
+    dd0= -log(ProbaSurviFullySensi);    
+    dd1= -log(1-ProbaSurviFullySensi);  
     
     %run mosquito population model
     [c,age,x,DeathInsecticide,Theta0,Theta1,AA0,AA1,E0,E1,AA0T,AA1T,...
@@ -335,6 +339,8 @@ if (0)
     C_est_cte= 0;
     cm= 0.2;               % SeuilC1<cm<SeuilC2
     ProbaSurviFullySensi=10^-10;
+    dd0= -log(ProbaSurviFullySensi);    
+    dd1= -log(1-ProbaSurviFullySensi);  
   
     %objective function for cVal
     objFun = @(cVal) qIR_FuncOpticVal(cVal, C_est_cte, cm, VarJ0, VarJ1, time, T, ...
