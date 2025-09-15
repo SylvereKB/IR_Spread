@@ -4,6 +4,58 @@ function[c,age,x,DeathInsecticide,Theta0,Theta1,AA0,AA1,E0,E1,AA0T,AA1T,...
     mu1,rrm,rr0,rr1,dd0,dd1,AvrMosquiLifeSpan,MinMosquiAgeLayEggs,cVal,k, ...
     EmergenceThreshold)
         
+%% This Function computes fitness functions and Survival probabilities
+    %
+    % Inputs:
+    %   C_est_cte - boolean value 1 if exposure rate is constant over deploymenbt period, 0 if not
+    %   cm - insecticide exposure rate
+    %   VarJ0 - mutational variance of reference susceptible mosquito
+    %   VarJ1 - mutational variance of reference resistant mosquito
+    %   time - vector of discretisation of time
+    %   T - total time
+    %   t_begin_c - starting time of insecticide exposure
+    %   tau - proportion of hatched eggs laid by AFM that reach adulthood
+    %   age - discretisation of AFM age
+    %   da - age step
+    %   x - discretisation of insect. resis. level 
+    %   dx - insect. resis. step
+    %   dt - time step
+    %   x0 - reference sensitive  insecticide resistance level
+    %   Na - number of age steps
+    %   Nx - number of insect. resist. level steps
+    %   Nt - number of time steps
+    %   gamma_i - hatching rate of eggs laid by unexposed/exposed AFM
+    %   mu_i - natural death rate of eggs laid by unexposed/exposed AFM
+    %   rrm - maximum number of eggs laid by the ref sensi strain
+    %   rr0 - average number of eggs laid by the ref sensi strain
+    %   rr1 - average number of eggs laid by the ref resis strain
+    %   dd0 - death rate of ref sensi strain due to insecticide
+    %   dd1 - death rate of ref resis strain due to insecticide
+    %   AvrMosquiLifeSpan - average mosquito life span in days
+    %   MinMosquiAgeLayEggs - minimum age for AFM to lay eggs in days
+    %   cVal - vector of insecticide exposure per year
+    %   k - exposant of the logistic function growth of eggs 
+    %   EmergenceThreshold - threshold in % of detection of 
+    %
+    % Outputs:
+    %   c - insecticide exposure rate in days
+    %   age - vector of discretisation of age
+    %   x - vector of discretisation of insec. resis. level
+    %   DeathInsecticide - death due to insecticide exposure
+    %   Theta0 - fitness function of ref sensitive mosquito population
+    %   Theta1 - fitness function of ref resitant mosquito population
+    %   AA0 - number of unexposed AFM in function of time and insec. resis. level
+    %   AA1 - number of exposed AFM in function of time and insec. resis. level
+    %   E0 - number of unexposed eggs in function of time and insec. resis. level
+    %   E1 - number of exposed eggs in function of time and insec. resis. level
+    %   AA0T - number of unexposed AFM in function of time
+    %   AA1T - number of exposed AFM in function of time
+    %   E0T - number of unexposed eggs in function of time
+    %   E1T - number of exposed eggs in function of time
+    %   id0 - indice of t_begin_c
+    %   RelativeGain - relative gain of using insecticide durint the deplyment period 
+    %   Temergence - time at which 10% of mosquito are now resistant  
+
     %% Mutation kernels of unexposed/exposed AFM
     FunJ0= @(x)normpdf(x,0,VarJ0);     %mutation function from allele x to y 
     FunJ1= @(x)normpdf(x,0,VarJ1);     %mutation function from allele x to y 
