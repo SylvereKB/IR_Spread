@@ -2,7 +2,7 @@ function qIR_MainFigure(LW, LETTERS, color, id0, Ny, T, days_per_year, t_begin_c
       Theta0, Theta1, AA0, AA1, E0, E1, AA0T, AA1T, E0T, E1T, ...
       Temergence,  RelativeGain)
 
-      % MainFigure - Generates a 3x3 subplot figure with fitness functions and population data
+      %% This function generates a 3x3 subplot figure comprising fitness functions, r_gain, Temg, AFM and eggs subpopulation
       %
       % Inputs:
       %   LW          - Line width
