@@ -148,7 +148,7 @@ if (0)
 end
 
 %% SECTION 3: Figure effect of C on Rgain and Temg
-if (1)
+if (0)
 
     Data=readtable('/Users/kezetasylvere/Documents/Codes IRSpread/TabRgainTemg.xlsx');
 
