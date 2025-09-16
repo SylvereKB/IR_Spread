@@ -88,11 +88,6 @@ if (0)
 
     %begin experience plan
     plan_exp = [VectC', -111*ones(lc,2)];
-    % row_number=0;
-    % for cm= 0.05:0.05:0.95
-    %     row_number=row_number+1;
-    %     plan_exp(row_number,1)=cm;
-    % end
     
     % ===== PROGRESS MONITORING SETUP =====
     fprintf('===== SIMULATION STARTING =====\n');
@@ -313,7 +308,8 @@ if (1)
     cVal= zeros(1,Ny);
     ProbaSurviFullySensi= 10^-1;        
     dd0= -log(ProbaSurviFullySensi);    
-    dd1= -log(1-ProbaSurviFullySensi);  
+    dd1= -log(1-ProbaSurviFullySensi);
+    %change value of xmax from 1.5 to 2.5 when ProbaSurviFullySensi= 10^-1;
     
     %run mosquito population model
     [c,age,x,DeathInsecticide,Theta0,Theta1,AA0,AA1,E0,E1,AA0T,AA1T,...
@@ -323,8 +319,8 @@ if (1)
       EmergenceThreshold);
 
     %main figure
-    qIR_MainFigure(LW,LETTERS,color,id0,Ny,T,days_per_year,t_begin_c,time, ...
-      x,Theta0,Theta1,AA0,AA1,E0,E1,AA0T,AA1T,E0T,E1T, ...
+    qIR_MainFigure(LW,LETTERS,color,id0,Ny,T,days_per_year,t_begin_c, ...
+      time,x,Theta0,Theta1,AA0,AA1,E0,E1,AA0T,AA1T,E0T,E1T,xmin,xmax, ...
       Temergence,RelativeGain);
 
     %save the figure
