@@ -63,4 +63,4 @@ function[Theta0,Theta1,r0,r1,r0X,r1X,SurvProb0,SurvProb1,DeathInsecticide,d0,d1]
     Theta0= tau.*gamma0./(mu0+gamma0).*squeeze(trapz(age,r0.*SurvProb0,1)); 
     Theta1= tau.*gamma1./(mu1+gamma1).*squeeze(trapz(age,r1.*SurvProb1,1)); 
 
-end
+end 
